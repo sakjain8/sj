@@ -58,7 +58,7 @@ ollama --version
 ### 3. Pull the model
 
 ```bash
-ollama pull llama3:8b-instruct
+ollama pull llama3:8b
 ```
 
 ### 4. Start Ollama server
@@ -103,9 +103,9 @@ Options:
   --topology {linear,debate,linear_immune} [...]
                          Topologies to run (default: all three)
   --num_tasks N          Number of tasks to process
-  --temperature FLOAT    Sampling temperature (default: 0.7)
+  --temperature FLOAT    Sampling temperature (default: 0.0)
   --seed INT             Random seed (default: 42)
-  --model NAME           Ollama model name (default: llama3:8b-instruct)
+  --model NAME           Ollama model name (default: llama3:8b)
   --skip_fetch           Use cached GitHub issues
   --force_fetch          Re-fetch issues even if cached
   --analysis_only        Only regenerate analysis, skip experiments

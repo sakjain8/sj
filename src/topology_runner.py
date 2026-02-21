@@ -26,9 +26,9 @@ from src.agent_runner import run_agent
 def _agent_kwargs(config: Dict) -> Dict:
     """Extract common agent parameters from the experiment config."""
     return {
-        "model": config.get("model", "llama3:8b-instruct"),
+        "model": config.get("model", "llama3:8b"),
         "ollama_url": config.get("ollama_url", "http://localhost:11434"),
-        "temperature": config.get("temperature", 0.7),
+        "temperature": config.get("temperature", 0.0),
         "retry_max": config.get("retry_max", 3),
         "retry_delay": config.get("retry_delay_seconds", 5),
         "cache_dir": config.get("cache_dir", "data/cache"),

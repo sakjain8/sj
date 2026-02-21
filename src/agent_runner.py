@@ -187,7 +187,7 @@ def call_ollama(
     system_prompt: str,
     user_prompt: str,
     ollama_url: str = "http://localhost:11434",
-    temperature: float = 0.7,
+    temperature: float = 0.0,
     retry_max: int = 3,
     retry_delay: int = 5,
     cache_dir: str = "data/cache",
@@ -199,7 +199,7 @@ def call_ollama(
     Parameters
     ----------
     model : str
-        Ollama model tag, e.g. "llama3:8b-instruct".
+        Ollama model tag, e.g. "llama3:8b".
     system_prompt : str
         System-level instruction.
     user_prompt : str
@@ -283,9 +283,9 @@ def run_agent(
     issue: Dict,
     previous_output: Optional[str] = None,
     extra_context: Optional[str] = None,
-    model: str = "llama3:8b-instruct",
+    model: str = "llama3:8b",
     ollama_url: str = "http://localhost:11434",
-    temperature: float = 0.7,
+    temperature: float = 0.0,
     retry_max: int = 3,
     retry_delay: int = 5,
     cache_dir: str = "data/cache",
