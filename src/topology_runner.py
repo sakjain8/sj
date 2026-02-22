@@ -15,6 +15,7 @@ Author: Research Framework
 """
 
 from typing import Dict, List
+import re
 
 from src.agent_runner import run_agent
 
@@ -350,6 +351,167 @@ def run_linear_immune_clean(issue: Dict, config: Dict) -> List[Dict]:
 
 
 # ---------------------------------------------------------------------------
+# Topology: Epidemic (Innate + Adaptive Immune System)
+# ---------------------------------------------------------------------------
+
+def _parse_confidence(output: str) -> str:
+    """
+    Parse the confidence signal from the innate verifier's output.
+
+    Searches for 'CONFIDENCE: HIGH' or 'CONFIDENCE: LOW' in the output.
+    Defaults to 'LOW' if ambiguous or missing (fail-safe: assume infected).
+
+    Returns
+    -------
+    str
+        'HIGH' or 'LOW'.
+    """
+    text = output.upper()
+    # Look for explicit confidence lines
+    if re.search(r"CONFIDENCE\s*:\s*HIGH", text):
+        return "HIGH"
+    if re.search(r"CONFIDENCE\s*:\s*LOW", text):
+        return "LOW"
+    # Fail-safe: if no clear signal, default to LOW (trigger adaptive)
+    return "LOW"
+
+
+def run_epidemic(issue: Dict, config: Dict) -> List[Dict]:
+    """
+    Execute the Epidemic (Innate + Adaptive Immune System) topology.
+
+    Models hallucination contagion mitigation as a biological immune
+    response:
+
+        Planner → Innate Verifier (Coder + self-check)
+                    ├─ HIGH confidence → Reviewer   (healthy pathway)
+                    └─ LOW confidence  → Adaptive Immune → Coder → Reviewer
+                                          (quarantine + recovery pathway)
+
+    The Innate Verifier acts as the Host Cell attempting to metabolise
+    the Planner's output.  If it detects something suspicious it releases
+    an "interferon" (CONFIDENCE: LOW), which activates the Adaptive
+    Immune agent (the Macrophage) to sanitise the plan.
+
+    Parameters
+    ----------
+    issue : dict
+        Injected issue dict.
+    config : dict
+        Experiment configuration.
+
+    Returns
+    -------
+    list[dict]
+        List of agent result dicts in execution order, each annotated
+        with epidemiological metadata.
+    """
+    tid = _task_id(issue)
+    marker = issue.get("marker", "")
+    kw = _agent_kwargs(config)
+    results: List[Dict] = []
+
+    # ── Step 1 — Infection: Planner receives the injected issue ──────
+    planner = run_agent(
+        agent_name="planner",
+        issue=issue,
+        task_id=tid,
+        topology="epidemic",
+        marker=marker,
+        **kw,
+    )
+    planner["epidemic_phase"] = "infection"
+    planner["innate_confidence"] = None
+    planner["adaptive_activated"] = False
+    results.append(planner)
+
+    # ── Step 2 — Innate Immune Response: Verifier evaluates the plan ─
+    innate = run_agent(
+        agent_name="innate_verifier",
+        issue=issue,
+        previous_output=planner["output"],
+        task_id=tid,
+        topology="epidemic",
+        marker=marker,
+        **kw,
+    )
+
+    confidence = _parse_confidence(innate["output"])
+    innate["epidemic_phase"] = "innate"
+    innate["innate_confidence"] = confidence
+    innate["adaptive_activated"] = (confidence == "LOW")
+    results.append(innate)
+
+    print(
+        f"  [epidemic] Innate verifier confidence: {confidence}"
+        f" → {'ACTIVATING adaptive immune' if confidence == 'LOW' else 'proceeding to reviewer'}"
+    )
+
+    if confidence == "LOW":
+        # ── Step 3a — Adaptive Immune: Sanitise the infected plan ────
+        adaptive = run_agent(
+            agent_name="adaptive_immune",
+            issue=issue,
+            previous_output=planner["output"],
+            task_id=tid,
+            topology="epidemic",
+            marker=marker,
+            **kw,
+        )
+        adaptive["epidemic_phase"] = "adaptive"
+        adaptive["innate_confidence"] = confidence
+        adaptive["adaptive_activated"] = True
+        results.append(adaptive)
+
+        # ── Step 3b — Recovery: Coder works from sanitised plan ──────
+        coder = run_agent(
+            agent_name="coder",
+            issue=issue,
+            previous_output=adaptive["output"],
+            task_id=tid,
+            topology="epidemic",
+            marker=marker,
+            **kw,
+        )
+        coder["epidemic_phase"] = "recovery"
+        coder["innate_confidence"] = confidence
+        coder["adaptive_activated"] = True
+        results.append(coder)
+
+        # ── Step 4a — Reviewer reviews recovered code ────────────────
+        reviewer = run_agent(
+            agent_name="reviewer",
+            issue=issue,
+            previous_output=coder["output"],
+            task_id=tid,
+            topology="epidemic",
+            marker=marker,
+            **kw,
+        )
+        reviewer["epidemic_phase"] = "recovered"
+        reviewer["innate_confidence"] = confidence
+        reviewer["adaptive_activated"] = True
+        results.append(reviewer)
+    else:
+        # ── Step 3c — Healthy: Pass innate output directly to reviewer
+        reviewer = run_agent(
+            agent_name="reviewer",
+            issue=issue,
+            previous_output=innate["output"],
+            task_id=tid,
+            topology="epidemic",
+            marker=marker,
+            **kw,
+        )
+        reviewer["epidemic_phase"] = "healthy"
+        reviewer["innate_confidence"] = confidence
+        reviewer["adaptive_activated"] = False
+        results.append(reviewer)
+
+    return results
+
+
+# ---------------------------------------------------------------------------
 # Dispatcher
 # ---------------------------------------------------------------------------
 
@@ -358,6 +520,7 @@ TOPOLOGY_REGISTRY = {
     "debate": run_debate,
     "linear_immune": run_linear_immune,
     "linear_immune_clean": run_linear_immune_clean,
+    "epidemic": run_epidemic,
 }
 
 

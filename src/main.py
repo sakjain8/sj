@@ -26,7 +26,7 @@ from datetime import datetime, timezone
 from src.data_loader import fetch_all_issues
 from src.injection_engine import inject_all
 from src.experiment_runner import run_experiments
-from src.metrics_engine import compute_aggregate_metrics, compute_immune_efficacy
+from src.metrics_engine import compute_aggregate_metrics, compute_immune_efficacy, compute_epidemic_efficacy
 from src.analysis import run_full_analysis
 
 
@@ -79,7 +79,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--topology", nargs="+",
-        choices=["linear", "debate", "linear_immune", "linear_immune_clean"],
+        choices=["linear", "debate", "linear_immune", "linear_immune_clean", "epidemic"],
         help="Topologies to run (default: all three)",
     )
     parser.add_argument(
@@ -160,7 +160,7 @@ def main():
     print(f"  Model       : {config.get('model', 'llama3:8b')}")
     print(f"  Temperature : {config.get('temperature', 0.0)}")
     print(f"  Seed        : {seed}")
-    print(f"  Topologies  : {config.get('topologies', ['linear', 'debate', 'linear_immune', 'linear_immune_clean'])}")
+    print(f"  Topologies  : {config.get('topologies', ['linear', 'debate', 'linear_immune', 'linear_immune_clean', 'epidemic'])}")
     print(f"  Output dir  : {output_dir}")
     print(f"  Timestamp   : {datetime.now(timezone.utc).isoformat()}")
     print("=" * 70)
@@ -212,7 +212,7 @@ def main():
 
     # ── Step 3: Run experiments ─────────────────────────────────────────
     print("\n[main] Step 3/5: Running experiments …")
-    topologies = config.get("topologies", ["linear", "debate", "linear_immune", "linear_immune_clean"])
+    topologies = config.get("topologies", ["linear", "debate", "linear_immune", "linear_immune_clean", "epidemic"])
     num_tasks = config.get("num_tasks", 30)
 
     experiment_results = run_experiments(
@@ -235,6 +235,14 @@ def main():
         with open(eff_path, "w", encoding="utf-8") as f:
             json.dump(immune_eff, f, indent=2)
         print(f"[main] Immune efficacy → {eff_path}")
+
+    # Epidemic efficacy
+    epidemic_eff = compute_epidemic_efficacy(aggregate, task_metrics)
+    if epidemic_eff:
+        epi_path = os.path.join(output_dir, "epidemic_efficacy.json")
+        with open(epi_path, "w", encoding="utf-8") as f:
+            json.dump(epidemic_eff, f, indent=2)
+        print(f"[main] Epidemic efficacy → {epi_path}")
 
     # ── Step 5: Generate analysis ───────────────────────────────────────
     print("\n[main] Step 5/5: Generating analysis …")

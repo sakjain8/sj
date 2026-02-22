@@ -191,7 +191,18 @@ def compute_task_metrics(
         "agents_total": len(downstream),
         "amplified_count": amplified_count,
         "infection_flags": infection_flags,
+        # Epidemic-specific fields (populated for epidemic topology)
+        "innate_confidence": _extract_epidemic_field(agent_results, "innate_confidence"),
+        "adaptive_activated": _extract_epidemic_field(agent_results, "adaptive_activated"),
     }
+
+
+def _extract_epidemic_field(agent_results: List[Dict], field: str):
+    """Extract an epidemic metadata field from the innate_verifier agent."""
+    for res in agent_results:
+        if res.get("agent_name") == "innate_verifier":
+            return res.get(field)
+    return None
 
 
 def _empty_metrics(task_id: str, topology: str) -> Dict:
@@ -206,6 +217,8 @@ def _empty_metrics(task_id: str, topology: str) -> Dict:
         "agents_total": 0,
         "amplified_count": 0,
         "infection_flags": [],
+        "innate_confidence": None,
+        "adaptive_activated": None,
     }
 
 
@@ -299,3 +312,78 @@ def compute_immune_efficacy(
         "absolute_reduction": round(abs_reduction, 4),
         "relative_reduction_pct": round(rel_reduction, 2),
     }
+
+
+# ---------------------------------------------------------------------------
+# Epidemic efficacy
+# ---------------------------------------------------------------------------
+
+def compute_epidemic_efficacy(
+    aggregate: Dict[str, Dict],
+    all_task_metrics: Optional[List[Dict]] = None,
+) -> Optional[Dict]:
+    """
+    Compute epidemic-specific metrics comparing 'linear' vs 'epidemic'.
+
+    Parameters
+    ----------
+    aggregate : dict[str, dict]
+        Aggregated metrics by topology.
+    all_task_metrics : list[dict] | None
+        Per-task metrics for computing IDR, AAR, Recovery Rate.
+
+    Returns
+    -------
+    dict | None
+        Epidemic efficacy metrics. None if data is missing.
+    """
+    linear = aggregate.get("linear")
+    epidemic = aggregate.get("epidemic")
+
+    if not linear or not epidemic:
+        return None
+
+    hcr_l = linear["avg_hcr"]
+    hcr_e = epidemic["avg_hcr"]
+    abs_reduction = hcr_l - hcr_e
+    rel_reduction = (abs_reduction / hcr_l * 100) if hcr_l > 0 else 0.0
+
+    result = {
+        "hcr_linear": round(hcr_l, 4),
+        "hcr_epidemic": round(hcr_e, 4),
+        "absolute_reduction": round(abs_reduction, 4),
+        "relative_reduction_pct": round(rel_reduction, 2),
+    }
+
+    # Compute Innate Detection Rate, Adaptive Activation Rate, Recovery Rate
+    if all_task_metrics:
+        epidemic_tasks = [m for m in all_task_metrics if m["topology"] == "epidemic"]
+        if epidemic_tasks:
+            n = len(epidemic_tasks)
+
+            # IDR: % of tasks where innate verifier detected LOW confidence
+            innate_detected = sum(
+                1 for m in epidemic_tasks
+                if m.get("innate_confidence") == "LOW"
+            )
+            result["innate_detection_rate"] = round(innate_detected / n, 4)
+
+            # AAR: % of tasks where adaptive immune was activated
+            adaptive_active = sum(
+                1 for m in epidemic_tasks
+                if m.get("adaptive_activated") is True
+            )
+            result["adaptive_activation_rate"] = round(adaptive_active / n, 4)
+
+            # Recovery Rate: of tasks where adaptive was activated,
+            # % where HCR dropped to 0 (infection fully cleared)
+            recovered = sum(
+                1 for m in epidemic_tasks
+                if m.get("adaptive_activated") is True and m["hcr"] == 0.0
+            )
+            result["recovery_rate"] = (
+                round(recovered / adaptive_active, 4)
+                if adaptive_active > 0 else 0.0
+            )
+
+    return result

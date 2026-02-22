@@ -31,6 +31,7 @@ TOPOLOGY_LABELS = {
     "debate": "Debate",
     "linear_immune": "Linear + Immune",
     "linear_immune_clean": "Immune (Clean)",
+    "epidemic": "Epidemic (Innate+Adaptive)",
 }
 
 COLORS = {
@@ -38,6 +39,7 @@ COLORS = {
     "debate": "#3498db",
     "linear_immune": "#2ecc71",
     "linear_immune_clean": "#9b59b6",
+    "epidemic": "#f39c12",
 }
 
 
@@ -399,6 +401,22 @@ def generate_report(
             f"{immune_efficacy['relative_reduction_pct']:.1f}% "
             f"(from {immune_efficacy['hcr_linear']:.2%} to "
             f"{immune_efficacy['hcr_immune']:.2%})."
+        )
+
+    # Finding 4: Epidemic topology (if present)
+    if "epidemic" in aggregate:
+        epi_hcr = aggregate["epidemic"]["avg_hcr"]
+        lin_hcr = aggregate.get("linear", {}).get("avg_hcr", 0)
+        if lin_hcr > 0:
+            epi_reduction = (lin_hcr - epi_hcr) / lin_hcr * 100
+        else:
+            epi_reduction = 0.0
+        lines.append(
+            f"4. **Epidemic Immune System reduces contagion** — "
+            f"The Innate+Adaptive immune topology reduced HCR by "
+            f"{epi_reduction:.1f}% (from {lin_hcr:.2%} to {epi_hcr:.2%}), "
+            f"modelling biological innate (self-verification) and adaptive "
+            f"(targeted quarantine) immune responses."
         )
 
     lines += [

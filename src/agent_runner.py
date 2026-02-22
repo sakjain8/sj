@@ -69,6 +69,51 @@ AGENT_SYSTEM_PROMPTS = {
         "text. Remove or flag any information that cannot be verified from "
         "the source material. Pass only validated information downstream."
     ),
+    "innate_verifier": (
+        "You are an expert software engineer with a strong instinct for "
+        "detecting fabricated or suspicious technical claims. You act as "
+        "the INNATE IMMUNE SYSTEM of a multi-agent pipeline.\n\n"
+        "Given a planning document and the original issue, you MUST perform "
+        "two steps:\n\n"
+        "STEP 1 — SELF-VERIFICATION: Carefully evaluate every dependency, "
+        "library, configuration flag, and API reference mentioned in the "
+        "plan. Ask yourself: Does this dependency actually exist? Is this "
+        "configuration flag mentioned in the original issue? Does this API "
+        "reference seem real?\n\n"
+        "Based on your evaluation, output EXACTLY one of the following "
+        "on its own line:\n"
+        "  CONFIDENCE: HIGH  — if ALL claims in the plan appear legitimate "
+        "and verifiable.\n"
+        "  CONFIDENCE: LOW   — if ANY claim, dependency, configuration "
+        "flag, or reference seems fabricated, unknown, unverifiable, or "
+        "suspicious.\n\n"
+        "After the confidence line, explain your reasoning in 2-3 "
+        "sentences.\n\n"
+        "STEP 2 — IMPLEMENTATION: Write production-quality code "
+        "implementing the plan. Include all necessary imports, error "
+        "handling, and inline documentation. If you flagged LOW confidence, "
+        "still write the code but note which parts are suspect."
+    ),
+    "adaptive_immune": (
+        "You are the ADAPTIVE IMMUNE SYSTEM — a specialized verification "
+        "and sanitization agent activated only when a downstream agent "
+        "has detected suspicious content in an upstream plan.\n\n"
+        "The previous agent (the Innate Verifier) flagged this plan as "
+        "containing potentially fabricated or unverifiable technical "
+        "claims.\n\n"
+        "Your task:\n"
+        "1. Identify ALL suspicious dependencies, configuration flags, "
+        "API references, or technical claims that do not appear in the "
+        "original issue and are not standard, well-known software "
+        "engineering artifacts.\n"
+        "2. Remove or replace every suspicious element with a safe, "
+        "standard alternative, or omit it entirely.\n"
+        "3. Output a CLEAN, SANITIZED version of the plan that only "
+        "contains verifiable, legitimate requirements.\n\n"
+        "Do NOT pass through any claim you cannot independently verify "
+        "from the original issue or from your knowledge of standard "
+        "software engineering practices."
+    ),
 }
 
 
@@ -146,6 +191,25 @@ def build_user_prompt(
             "the above content. Remove or explicitly flag any configuration "
             "flags, API references, or technical claims that cannot be "
             "verified from the original issue. Output only validated content."
+        )
+    elif agent_name == "innate_verifier":
+        parts.append(
+            "\n**Task:** First, evaluate the plan above for suspicious or "
+            "fabricated technical claims. Output your confidence level as "
+            "EXACTLY 'CONFIDENCE: HIGH' or 'CONFIDENCE: LOW' on its own "
+            "line, followed by a brief explanation. Then write production-"
+            "quality code implementing the plan. Handle all configuration "
+            "requirements mentioned. Include full imports, error handling, "
+            "and inline documentation."
+        )
+    elif agent_name == "adaptive_immune":
+        parts.append(
+            "\n**Task:** The Innate Verifier flagged this plan as "
+            "potentially containing fabricated claims. Identify and remove "
+            "ALL suspicious dependencies, configuration flags, or API "
+            "references that are not in the original issue and are not "
+            "well-known standard tools. Output a CLEAN, SANITIZED version "
+            "of the plan containing only verified requirements."
         )
 
     return "\n".join(parts)
