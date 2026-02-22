@@ -1,6 +1,6 @@
 {
-  "hcr_linear": 0.0,
-  "hcr_immune": 0.0,
-  "absolute_reduction": 0.0,
-  "relative_reduction_pct": 0.0
+  "hcr_linear": 0.8667,
+  "hcr_immune": 0.7556,
+  "absolute_reduction": 0.1111,
+  "relative_reduction_pct": 12.82
 }

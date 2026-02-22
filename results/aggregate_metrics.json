@@ -1,47 +1,47 @@
 {
   "linear": {
-    "avg_hcr": 0.0,
-    "avg_har": 0.0,
-    "avg_depth": 0.0,
+    "avg_hcr": 0.8667,
+    "avg_har": 0.5333,
+    "avg_depth": 1.57,
     "num_tasks": 30,
-    "total_infected": 0,
+    "total_infected": 52,
     "total_agents": 60,
-    "total_amplified": 0
+    "total_amplified": 31
   },
   "debate": {
-    "avg_hcr": 0.0,
-    "avg_har": 0.0,
-    "avg_depth": 0.0,
+    "avg_hcr": 0.8,
+    "avg_har": 0.5722,
+    "avg_depth": 1.87,
     "num_tasks": 30,
-    "total_infected": 0,
+    "total_infected": 72,
     "total_agents": 90,
-    "total_amplified": 0
+    "total_amplified": 45
   },
   "linear_immune": {
-    "avg_hcr": 0.0,
-    "avg_har": 0.0,
-    "avg_depth": 0.0,
+    "avg_hcr": 0.7556,
+    "avg_har": 0.5389,
+    "avg_depth": 2.0,
     "num_tasks": 30,
-    "total_infected": 0,
+    "total_infected": 68,
     "total_agents": 90,
-    "total_amplified": 0
+    "total_amplified": 36
   },
   "linear_immune_clean": {
-    "avg_hcr": 0.0,
-    "avg_har": 0.0,
-    "avg_depth": 0.0,
+    "avg_hcr": 0.8222,
+    "avg_har": 0.4944,
+    "avg_depth": 2.23,
     "num_tasks": 30,
-    "total_infected": 0,
+    "total_infected": 74,
     "total_agents": 90,
-    "total_amplified": 0
+    "total_amplified": 35
   },
   "epidemic": {
-    "avg_hcr": 0.6833,
-    "avg_har": 0.3472,
-    "avg_depth": 1.2,
+    "avg_hcr": 0.7083,
+    "avg_har": 0.4139,
+    "avg_depth": 1.27,
     "num_tasks": 30,
-    "total_infected": 55,
-    "total_agents": 80,
-    "total_amplified": 20
+    "total_infected": 52,
+    "total_agents": 72,
+    "total_amplified": 28
   }
 }
