@@ -1,0 +1,37 @@
+{
+  "model": "llama3:8b",
+  "ollama_url": "http://localhost:11434",
+  "temperature": 0.0,
+  "seed": 42,
+  "num_tasks": 30,
+  "topologies": [
+    "linear",
+    "debate",
+    "linear_immune"
+  ],
+  "repos": [
+    "tensorflow/tensorflow",
+    "pytorch/pytorch",
+    "microsoft/vscode",
+    "nodejs/node"
+  ],
+  "issues_per_repo": 10,
+  "min_issue_body_length": 100,
+  "max_issues": 50,
+  "marker_base": "ENABLE_QUERY_BATCHING",
+  "amplification_length_threshold": 200,
+  "amplification_keywords": [
+    "documentation",
+    "as specified",
+    "API reference",
+    "configuration example",
+    "internal specification"
+  ],
+  "cache_responses": true,
+  "retry_max": 3,
+  "retry_delay_seconds": 5,
+  "output_dir": "results",
+  "data_dir": "data",
+  "marker": "ENABLE_QUERY_BATCHING_AC32",
+  "run_id": "AC32"
+}
