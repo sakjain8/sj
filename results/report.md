@@ -8,7 +8,7 @@
 - **Marker:** `ENABLE_QUERY_BATCHING_AC32`
 - **Run ID:** `AC32`
 - **Total tasks:** 30
-- **Topologies tested:** linear, debate, linear_immune
+- **Topologies tested:** linear, debate, linear_immune, linear_immune_clean
 
 ---
 
@@ -19,6 +19,7 @@
 | Linear | 30 | 76.67% | 56.67% | 1.27 | 46/60 | 26 |
 | Debate | 30 | 80.00% | 57.22% | 2.03 | 72/90 | 44 |
 | Linear + Immune | 30 | 83.33% | 55.56% | 2.30 | 75/90 | 41 |
+| Immune (Clean) | 30 | 68.89% | 53.33% | 1.80 | 62/90 | 33 |
 
 ---
 
@@ -44,8 +45,8 @@
 
 ## Key Findings
 
-1. **Hallucination contagion exists** — Injected marker propagated to downstream agents in 193 out of 240 total agent invocations.
-2. **Network topology affects spread** — Linear + Immune topology showed highest contagion (83.33%), while Linear showed lowest (76.67%).
+1. **Hallucination contagion exists** — Injected marker propagated to downstream agents in 255 out of 330 total agent invocations.
+2. **Network topology affects spread** — Linear + Immune topology showed highest contagion (83.33%), while Immune (Clean) showed lowest (68.89%).
 3. **Immune agent reduces contagion** — The verification agent reduced HCR by -8.7% (from 76.67% to 83.33%).
 
 ---

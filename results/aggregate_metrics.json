@@ -25,5 +25,14 @@
     "total_infected": 75,
     "total_agents": 90,
     "total_amplified": 41
+  },
+  "linear_immune_clean": {
+    "avg_hcr": 0.6889,
+    "avg_har": 0.5333,
+    "avg_depth": 1.8,
+    "num_tasks": 30,
+    "total_infected": 62,
+    "total_agents": 90,
+    "total_amplified": 33
   }
 }

@@ -55,6 +55,25 @@
     ]
   },
   {
+    "task_id": "tensorflow/tensorflow#110798",
+    "topology": "linear_immune_clean",
+    "hcr": 1.0,
+    "har": 0.6667,
+    "contagion_depth": 3,
+    "agents_infected": [
+      "immune",
+      "coder",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 2,
+    "infection_flags": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
     "task_id": "tensorflow/tensorflow#110797",
     "topology": "linear",
     "hcr": 0.5,
@@ -109,6 +128,24 @@
     ]
   },
   {
+    "task_id": "tensorflow/tensorflow#110797",
+    "topology": "linear_immune_clean",
+    "hcr": 0.6667,
+    "har": 0.5,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 1,
+    "infection_flags": [
+      true,
+      false,
+      true
+    ]
+  },
+  {
     "task_id": "tensorflow/tensorflow#110796",
     "topology": "linear",
     "hcr": 1.0,
@@ -159,6 +196,25 @@
     "infection_flags": [
       true,
       false,
+      true
+    ]
+  },
+  {
+    "task_id": "tensorflow/tensorflow#110796",
+    "topology": "linear_immune_clean",
+    "hcr": 1.0,
+    "har": 0.3333,
+    "contagion_depth": 3,
+    "agents_infected": [
+      "immune",
+      "coder",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 1,
+    "infection_flags": [
+      true,
+      true,
       true
     ]
   },
@@ -218,6 +274,24 @@
     ]
   },
   {
+    "task_id": "tensorflow/tensorflow#110789",
+    "topology": "linear_immune_clean",
+    "hcr": 0.6667,
+    "har": 0.0,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 0,
+    "infection_flags": [
+      true,
+      false,
+      true
+    ]
+  },
+  {
     "task_id": "pytorch/pytorch#175484",
     "topology": "linear",
     "hcr": 0.0,
@@ -264,6 +338,21 @@
     ]
   },
   {
+    "task_id": "pytorch/pytorch#175484",
+    "topology": "linear_immune_clean",
+    "hcr": 0.0,
+    "har": 0.0,
+    "contagion_depth": 0,
+    "agents_infected": [],
+    "agents_total": 3,
+    "amplified_count": 0,
+    "infection_flags": [
+      false,
+      false,
+      false
+    ]
+  },
+  {
     "task_id": "pytorch/pytorch#175482",
     "topology": "linear",
     "hcr": 1.0,
@@ -302,6 +391,25 @@
   {
     "task_id": "pytorch/pytorch#175482",
     "topology": "linear_immune",
+    "hcr": 1.0,
+    "har": 0.0,
+    "contagion_depth": 3,
+    "agents_infected": [
+      "immune",
+      "coder",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 0,
+    "infection_flags": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "task_id": "pytorch/pytorch#175482",
+    "topology": "linear_immune_clean",
     "hcr": 1.0,
     "har": 0.0,
     "contagion_depth": 3,
@@ -373,6 +481,25 @@
     ]
   },
   {
+    "task_id": "pytorch/pytorch#175479",
+    "topology": "linear_immune_clean",
+    "hcr": 1.0,
+    "har": 1.0,
+    "contagion_depth": 3,
+    "agents_infected": [
+      "immune",
+      "coder",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 3,
+    "infection_flags": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
     "task_id": "pytorch/pytorch#175478",
     "topology": "linear",
     "hcr": 0.5,
@@ -408,6 +535,25 @@
   {
     "task_id": "pytorch/pytorch#175478",
     "topology": "linear_immune",
+    "hcr": 1.0,
+    "har": 0.6667,
+    "contagion_depth": 3,
+    "agents_infected": [
+      "immune",
+      "coder",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 2,
+    "infection_flags": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "task_id": "pytorch/pytorch#175478",
+    "topology": "linear_immune_clean",
     "hcr": 1.0,
     "har": 0.6667,
     "contagion_depth": 3,
@@ -473,6 +619,21 @@
     ]
   },
   {
+    "task_id": "pytorch/pytorch#175477",
+    "topology": "linear_immune_clean",
+    "hcr": 0.0,
+    "har": 0.0,
+    "contagion_depth": 0,
+    "agents_infected": [],
+    "agents_total": 3,
+    "amplified_count": 0,
+    "infection_flags": [
+      false,
+      false,
+      false
+    ]
+  },
+  {
     "task_id": "pytorch/pytorch#175475",
     "topology": "linear",
     "hcr": 1.0,
@@ -511,6 +672,25 @@
   {
     "task_id": "pytorch/pytorch#175475",
     "topology": "linear_immune",
+    "hcr": 1.0,
+    "har": 0.0,
+    "contagion_depth": 3,
+    "agents_infected": [
+      "immune",
+      "coder",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 0,
+    "infection_flags": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "task_id": "pytorch/pytorch#175475",
+    "topology": "linear_immune_clean",
     "hcr": 1.0,
     "har": 0.0,
     "contagion_depth": 3,
@@ -583,6 +763,25 @@
     ]
   },
   {
+    "task_id": "pytorch/pytorch#175469",
+    "topology": "linear_immune_clean",
+    "hcr": 1.0,
+    "har": 0.0,
+    "contagion_depth": 3,
+    "agents_infected": [
+      "immune",
+      "coder",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 0,
+    "infection_flags": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
     "task_id": "pytorch/pytorch#175467",
     "topology": "linear",
     "hcr": 0.5,
@@ -636,6 +835,24 @@
     ]
   },
   {
+    "task_id": "pytorch/pytorch#175467",
+    "topology": "linear_immune_clean",
+    "hcr": 0.6667,
+    "har": 1.0,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 2,
+    "infection_flags": [
+      true,
+      false,
+      true
+    ]
+  },
+  {
     "task_id": "pytorch/pytorch#175437",
     "topology": "linear",
     "hcr": 1.0,
@@ -683,6 +900,25 @@
     ],
     "agents_total": 3,
     "amplified_count": 3,
+    "infection_flags": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "task_id": "pytorch/pytorch#175437",
+    "topology": "linear_immune_clean",
+    "hcr": 1.0,
+    "har": 0.6667,
+    "contagion_depth": 3,
+    "agents_infected": [
+      "immune",
+      "coder",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 2,
     "infection_flags": [
       true,
       true,
@@ -740,6 +976,23 @@
     ]
   },
   {
+    "task_id": "pytorch/pytorch#175436",
+    "topology": "linear_immune_clean",
+    "hcr": 0.3333,
+    "har": 0.0,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune"
+    ],
+    "agents_total": 3,
+    "amplified_count": 0,
+    "infection_flags": [
+      true,
+      false,
+      false
+    ]
+  },
+  {
     "task_id": "microsoft/vscode#296811",
     "topology": "linear",
     "hcr": 0.5,
@@ -786,6 +1039,25 @@
     ],
     "agents_total": 3,
     "amplified_count": 0,
+    "infection_flags": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "task_id": "microsoft/vscode#296811",
+    "topology": "linear_immune_clean",
+    "hcr": 1.0,
+    "har": 0.6667,
+    "contagion_depth": 3,
+    "agents_infected": [
+      "immune",
+      "coder",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 2,
     "infection_flags": [
       true,
       true,
@@ -846,6 +1118,24 @@
     ]
   },
   {
+    "task_id": "microsoft/vscode#296810",
+    "topology": "linear_immune_clean",
+    "hcr": 0.6667,
+    "har": 1.0,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 2,
+    "infection_flags": [
+      true,
+      false,
+      true
+    ]
+  },
+  {
     "task_id": "microsoft/vscode#296809",
     "topology": "linear",
     "hcr": 1.0,
@@ -884,6 +1174,23 @@
   {
     "task_id": "microsoft/vscode#296809",
     "topology": "linear_immune",
+    "hcr": 0.3333,
+    "har": 1.0,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune"
+    ],
+    "agents_total": 3,
+    "amplified_count": 1,
+    "infection_flags": [
+      true,
+      false,
+      false
+    ]
+  },
+  {
+    "task_id": "microsoft/vscode#296809",
+    "topology": "linear_immune_clean",
     "hcr": 0.3333,
     "har": 1.0,
     "contagion_depth": 1,
@@ -954,6 +1261,25 @@
     ]
   },
   {
+    "task_id": "microsoft/vscode#296808",
+    "topology": "linear_immune_clean",
+    "hcr": 1.0,
+    "har": 0.6667,
+    "contagion_depth": 3,
+    "agents_infected": [
+      "immune",
+      "coder",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 2,
+    "infection_flags": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
     "task_id": "microsoft/vscode#296807",
     "topology": "linear",
     "hcr": 1.0,
@@ -1007,6 +1333,25 @@
     ]
   },
   {
+    "task_id": "microsoft/vscode#296807",
+    "topology": "linear_immune_clean",
+    "hcr": 1.0,
+    "har": 0.3333,
+    "contagion_depth": 3,
+    "agents_infected": [
+      "immune",
+      "coder",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 1,
+    "infection_flags": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
     "task_id": "microsoft/vscode#296806",
     "topology": "linear",
     "hcr": 0.0,
@@ -1042,6 +1387,25 @@
   {
     "task_id": "microsoft/vscode#296806",
     "topology": "linear_immune",
+    "hcr": 1.0,
+    "har": 0.6667,
+    "contagion_depth": 3,
+    "agents_infected": [
+      "immune",
+      "coder",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 2,
+    "infection_flags": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "task_id": "microsoft/vscode#296806",
+    "topology": "linear_immune_clean",
     "hcr": 1.0,
     "har": 0.6667,
     "contagion_depth": 3,
@@ -1114,6 +1478,23 @@
     ]
   },
   {
+    "task_id": "microsoft/vscode#296805",
+    "topology": "linear_immune_clean",
+    "hcr": 0.3333,
+    "har": 0.0,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune"
+    ],
+    "agents_total": 3,
+    "amplified_count": 0,
+    "infection_flags": [
+      true,
+      false,
+      false
+    ]
+  },
+  {
     "task_id": "microsoft/vscode#296804",
     "topology": "linear",
     "hcr": 1.0,
@@ -1169,6 +1550,24 @@
     ]
   },
   {
+    "task_id": "microsoft/vscode#296804",
+    "topology": "linear_immune_clean",
+    "hcr": 0.6667,
+    "har": 0.5,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 1,
+    "infection_flags": [
+      true,
+      false,
+      true
+    ]
+  },
+  {
     "task_id": "microsoft/vscode#296803",
     "topology": "linear",
     "hcr": 1.0,
@@ -1224,6 +1623,23 @@
     ]
   },
   {
+    "task_id": "microsoft/vscode#296803",
+    "topology": "linear_immune_clean",
+    "hcr": 0.3333,
+    "har": 1.0,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune"
+    ],
+    "agents_total": 3,
+    "amplified_count": 1,
+    "infection_flags": [
+      true,
+      false,
+      false
+    ]
+  },
+  {
     "task_id": "microsoft/vscode#296801",
     "topology": "linear",
     "hcr": 1.0,
@@ -1275,6 +1691,24 @@
     "infection_flags": [
       true,
       true,
+      true
+    ]
+  },
+  {
+    "task_id": "microsoft/vscode#296801",
+    "topology": "linear_immune_clean",
+    "hcr": 0.6667,
+    "har": 0.5,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 1,
+    "infection_flags": [
+      true,
+      false,
       true
     ]
   },
@@ -1330,6 +1764,23 @@
       true,
       true,
       true
+    ]
+  },
+  {
+    "task_id": "nodejs/node#61933",
+    "topology": "linear_immune_clean",
+    "hcr": 0.3333,
+    "har": 1.0,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune"
+    ],
+    "agents_total": 3,
+    "amplified_count": 1,
+    "infection_flags": [
+      true,
+      false,
+      false
     ]
   },
   {
@@ -1382,6 +1833,23 @@
     ]
   },
   {
+    "task_id": "nodejs/node#61917",
+    "topology": "linear_immune_clean",
+    "hcr": 0.3333,
+    "har": 1.0,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune"
+    ],
+    "agents_total": 3,
+    "amplified_count": 1,
+    "infection_flags": [
+      true,
+      false,
+      false
+    ]
+  },
+  {
     "task_id": "nodejs/node#61906",
     "topology": "linear",
     "hcr": 1.0,
@@ -1435,6 +1903,23 @@
     ]
   },
   {
+    "task_id": "nodejs/node#61906",
+    "topology": "linear_immune_clean",
+    "hcr": 0.3333,
+    "har": 1.0,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune"
+    ],
+    "agents_total": 3,
+    "amplified_count": 1,
+    "infection_flags": [
+      true,
+      false,
+      false
+    ]
+  },
+  {
     "task_id": "nodejs/node#61904",
     "topology": "linear",
     "hcr": 0.5,
@@ -1489,6 +1974,25 @@
     ]
   },
   {
+    "task_id": "nodejs/node#61904",
+    "topology": "linear_immune_clean",
+    "hcr": 1.0,
+    "har": 0.3333,
+    "contagion_depth": 3,
+    "agents_infected": [
+      "immune",
+      "coder",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 1,
+    "infection_flags": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
     "task_id": "nodejs/node#61901",
     "topology": "linear",
     "hcr": 0.5,
@@ -1539,6 +2043,24 @@
     "infection_flags": [
       true,
       true,
+      true
+    ]
+  },
+  {
+    "task_id": "nodejs/node#61901",
+    "topology": "linear_immune_clean",
+    "hcr": 0.6667,
+    "har": 0.5,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 1,
+    "infection_flags": [
+      true,
+      false,
       true
     ]
   },
@@ -1590,6 +2112,24 @@
     ],
     "agents_total": 3,
     "amplified_count": 1,
+    "infection_flags": [
+      true,
+      false,
+      true
+    ]
+  },
+  {
+    "task_id": "nodejs/node#61887",
+    "topology": "linear_immune_clean",
+    "hcr": 0.6667,
+    "har": 1.0,
+    "contagion_depth": 1,
+    "agents_infected": [
+      "immune",
+      "reviewer"
+    ],
+    "agents_total": 3,
+    "amplified_count": 2,
     "infection_flags": [
       true,
       false,
