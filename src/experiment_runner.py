@@ -90,7 +90,7 @@ def run_experiments(
         Keys: raw_outputs, task_metrics, aggregate_metrics.
     """
     config = config or {}
-    topologies = topologies or ["linear", "debate", "linear_immune"]
+    topologies = topologies or ["linear", "debate", "linear_immune", "linear_immune_clean"]
 
     # Optionally limit the number of tasks
     task_list = issues[:num_tasks] if num_tasks else issues

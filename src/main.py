@@ -79,7 +79,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--topology", nargs="+",
-        choices=["linear", "debate", "linear_immune"],
+        choices=["linear", "debate", "linear_immune", "linear_immune_clean"],
         help="Topologies to run (default: all three)",
     )
     parser.add_argument(
@@ -160,7 +160,7 @@ def main():
     print(f"  Model       : {config.get('model', 'llama3:8b')}")
     print(f"  Temperature : {config.get('temperature', 0.0)}")
     print(f"  Seed        : {seed}")
-    print(f"  Topologies  : {config.get('topologies', ['linear', 'debate', 'linear_immune'])}")
+    print(f"  Topologies  : {config.get('topologies', ['linear', 'debate', 'linear_immune', 'linear_immune_clean'])}")
     print(f"  Output dir  : {output_dir}")
     print(f"  Timestamp   : {datetime.now(timezone.utc).isoformat()}")
     print("=" * 70)
@@ -212,7 +212,7 @@ def main():
 
     # ── Step 3: Run experiments ─────────────────────────────────────────
     print("\n[main] Step 3/5: Running experiments …")
-    topologies = config.get("topologies", ["linear", "debate", "linear_immune"])
+    topologies = config.get("topologies", ["linear", "debate", "linear_immune", "linear_immune_clean"])
     num_tasks = config.get("num_tasks", 30)
 
     experiment_results = run_experiments(

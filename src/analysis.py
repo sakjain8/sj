@@ -30,12 +30,14 @@ TOPOLOGY_LABELS = {
     "linear": "Linear",
     "debate": "Debate",
     "linear_immune": "Linear + Immune",
+    "linear_immune_clean": "Immune (Clean)",
 }
 
 COLORS = {
     "linear": "#e74c3c",
     "debate": "#3498db",
     "linear_immune": "#2ecc71",
+    "linear_immune_clean": "#9b59b6",
 }
 
 

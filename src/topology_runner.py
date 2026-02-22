@@ -262,6 +262,94 @@ def run_linear_immune(issue: Dict, config: Dict) -> List[Dict]:
 
 
 # ---------------------------------------------------------------------------
+# Topology: Linear + Immune Agent (Clean Ground Truth)
+# ---------------------------------------------------------------------------
+
+def run_linear_immune_clean(issue: Dict, config: Dict) -> List[Dict]:
+    """
+    Execute the linear chain with an immune agent that has clean ground truth.
+
+    Unlike ``run_linear_immune``, the immune agent receives the **original,
+    non-injected** issue body so it can cross-reference the planner's output
+    against uncontaminated source material.
+
+    Flow: Planner(injected) → Immune(clean issue) → Coder → Reviewer
+
+    Parameters
+    ----------
+    issue : dict
+        Injected issue dict (must contain ``body_original``).
+    config : dict
+        Experiment configuration.
+
+    Returns
+    -------
+    list[dict]
+        List of agent result dicts in execution order.
+    """
+    import copy
+
+    tid = _task_id(issue)
+    marker = issue.get("marker", "")
+    kw = _agent_kwargs(config)
+    results: List[Dict] = []
+
+    # Step 1 — Planner (receives injected issue as usual)
+    planner = run_agent(
+        agent_name="planner",
+        issue=issue,
+        task_id=tid,
+        topology="linear_immune_clean",
+        marker=marker,
+        **kw,
+    )
+    results.append(planner)
+
+    # Build a clean copy of the issue using the original body
+    clean_issue = copy.deepcopy(issue)
+    if "body_original" in clean_issue:
+        clean_issue["body"] = clean_issue["body_original"]
+
+    # Step 2 — Immune agent receives CLEAN issue + infected planner output
+    immune = run_agent(
+        agent_name="immune",
+        issue=clean_issue,
+        previous_output=planner["output"],
+        task_id=tid,
+        topology="linear_immune_clean",
+        marker=marker,
+        **kw,
+    )
+    results.append(immune)
+
+    # Step 3 — Coder receives immune-filtered output (with injected issue)
+    coder = run_agent(
+        agent_name="coder",
+        issue=issue,
+        previous_output=immune["output"],
+        task_id=tid,
+        topology="linear_immune_clean",
+        marker=marker,
+        **kw,
+    )
+    results.append(coder)
+
+    # Step 4 — Reviewer
+    reviewer = run_agent(
+        agent_name="reviewer",
+        issue=issue,
+        previous_output=coder["output"],
+        task_id=tid,
+        topology="linear_immune_clean",
+        marker=marker,
+        **kw,
+    )
+    results.append(reviewer)
+
+    return results
+
+
+# ---------------------------------------------------------------------------
 # Dispatcher
 # ---------------------------------------------------------------------------
 
@@ -269,6 +357,7 @@ TOPOLOGY_REGISTRY = {
     "linear": run_linear,
     "debate": run_debate,
     "linear_immune": run_linear_immune,
+    "linear_immune_clean": run_linear_immune_clean,
 }
 
 
