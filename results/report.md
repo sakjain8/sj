@@ -5,10 +5,10 @@
 - **Model:** llama3:8b
 - **Temperature:** 0.0
 - **Seed:** 42
-- **Marker:** `ENABLE_QUERY_BATCHING_AC32`
-- **Run ID:** `AC32`
+- **Marker:** `ENABLE_QUERY_BATCHING_6D40`
+- **Run ID:** `6D40`
 - **Total tasks:** 30
-- **Topologies tested:** linear, debate, linear_immune, linear_immune_clean
+- **Topologies tested:** linear, debate, linear_immune, linear_immune_clean, epidemic
 
 ---
 
@@ -16,28 +16,29 @@
 
 | Topology | Tasks | Avg HCR | Avg HAR | Avg Depth | Infected / Total | Amplified |
 |----------|-------|---------|---------|-----------|------------------|-----------|
-| Linear | 30 | 76.67% | 56.67% | 1.27 | 46/60 | 26 |
-| Debate | 30 | 80.00% | 57.22% | 2.03 | 72/90 | 44 |
-| Linear + Immune | 30 | 83.33% | 55.56% | 2.30 | 75/90 | 41 |
-| Immune (Clean) | 30 | 68.89% | 53.33% | 1.80 | 62/90 | 33 |
+| Linear | 30 | 0.00% | 0.00% | 0.00 | 0/60 | 0 |
+| Debate | 30 | 0.00% | 0.00% | 0.00 | 0/90 | 0 |
+| Linear + Immune | 30 | 0.00% | 0.00% | 0.00 | 0/90 | 0 |
+| Immune (Clean) | 30 | 0.00% | 0.00% | 0.00 | 0/90 | 0 |
+| Epidemic (Innate+Adaptive) | 30 | 68.33% | 34.72% | 1.20 | 55/80 | 20 |
 
 ---
 
 ## Immune Agent Efficacy
 
-- **Linear HCR:** 76.67%
-- **Immune HCR:** 83.33%
-- **Absolute reduction:** -6.66%
-- **Relative reduction:** -8.7%
+- **Linear HCR:** 0.00%
+- **Immune HCR:** 0.00%
+- **Absolute reduction:** 0.00%
+- **Relative reduction:** 0.0%
 
 ## Statistical Analysis
 
 **Independent samples t-test (Linear vs Linear+Immune):**
 
-- t-statistic: -0.8717
-- p-value: 0.38733
-- Linear mean HCR: 76.67% (n=30)
-- Immune mean HCR: 83.33% (n=30)
+- t-statistic: nan
+- p-value: nan
+- Linear mean HCR: 0.00% (n=30)
+- Immune mean HCR: 0.00% (n=30)
 - Significant at α=0.05: **No**
 - Significant at α=0.01: **No**
 
@@ -45,9 +46,10 @@
 
 ## Key Findings
 
-1. **Hallucination contagion exists** — Injected marker propagated to downstream agents in 255 out of 330 total agent invocations.
-2. **Network topology affects spread** — Linear + Immune topology showed highest contagion (83.33%), while Immune (Clean) showed lowest (68.89%).
-3. **Immune agent reduces contagion** — The verification agent reduced HCR by -8.7% (from 76.67% to 83.33%).
+1. **Hallucination contagion exists** — Injected marker propagated to downstream agents in 55 out of 410 total agent invocations.
+2. **Network topology affects spread** — Epidemic (Innate+Adaptive) topology showed highest contagion (68.33%), while Linear showed lowest (0.00%).
+3. **Immune agent reduces contagion** — The verification agent reduced HCR by 0.0% (from 0.00% to 0.00%).
+4. **Epidemic Immune System reduces contagion** — The Innate+Adaptive immune topology reduced HCR by 0.0% (from 0.00% to 68.33%), modelling biological innate (self-verification) and adaptive (targeted quarantine) immune responses.
 
 ---
 

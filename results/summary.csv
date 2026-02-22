@@ -1,5 +1,6 @@
 topology,num_tasks,avg_hcr,avg_har,avg_depth,total_infected,total_agents,total_amplified
-Linear,30,0.7667,0.5667,1.27,46,60,26
-Debate,30,0.8,0.5722,2.03,72,90,44
-Linear + Immune,30,0.8333,0.5556,2.3,75,90,41
-Immune (Clean),30,0.6889,0.5333,1.8,62,90,33
+Linear,30,0.0,0.0,0.0,0,60,0
+Debate,30,0.0,0.0,0.0,0,90,0
+Linear + Immune,30,0.0,0.0,0.0,0,90,0
+Immune (Clean),30,0.0,0.0,0.0,0,90,0
+Epidemic (Innate+Adaptive),30,0.6833,0.3472,1.2,55,80,20

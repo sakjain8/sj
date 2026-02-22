@@ -8,7 +8,8 @@
     "linear",
     "debate",
     "linear_immune",
-    "linear_immune_clean"
+    "linear_immune_clean",
+    "epidemic"
   ],
   "repos": [
     "tensorflow/tensorflow",
@@ -33,6 +34,6 @@
   "retry_delay_seconds": 5,
   "output_dir": "results",
   "data_dir": "data",
-  "marker": "ENABLE_QUERY_BATCHING_AC32",
-  "run_id": "AC32"
+  "marker": "ENABLE_QUERY_BATCHING_6D40",
+  "run_id": "6D40"
 }

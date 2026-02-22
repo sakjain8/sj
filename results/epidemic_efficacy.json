@@ -1,0 +1,9 @@
+{
+  "hcr_linear": 0.0,
+  "hcr_epidemic": 0.6833,
+  "absolute_reduction": -0.6833,
+  "relative_reduction_pct": 0.0,
+  "innate_detection_rate": 0.3333,
+  "adaptive_activation_rate": 0.3333,
+  "recovery_rate": 0.0
+}
